@@ -1,0 +1,42 @@
+<template>
+  <footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-6 py-6">
+      <!-- Links Sections -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        <div>
+          <h3 class="text-lg font-bold mb-4">Tentang Traveloka</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-gray-300">Tentang Kami</a></li>
+            <li><a href="#" class="hover:text-gray-300">Karir</a></li>
+            <li><a href="#" class="hover:text-gray-300">Blog</a></li>
+            <li>
+              <a href="#" class="hover:text-gray-300">Syarat dan Ketentuan</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-300">Kebijakan Privasi</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Produk</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-gray-300">Penerbangan</a></li>
+            <li><a href="#" class="hover:text-gray-300">Hotel</a></li>
+            <li><a href="#" class="hover:text-gray-300">Kereta Api</a></li>
+            <li><a href="#" class="hover:text-gray-300">Rental Mobil</a></li>
+            <li><a href="#" class="hover:text-gray-300">Wisata</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Lainnya</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-gray-300">Bantuan</a></li>
+            <li><a href="#" class="hover:text-gray-300">Kontak Kami</a></li>
+            <li><a href="#" class="hover:text-gray-300">Afiliasi</a></li>
+            <li><a href="#" class="hover:text-gray-300">Media Sosial</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>
