@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, watch, watchEffect } from "vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const isScrolled = ref(false);
-const isHomePage = ref(true);
+const isHomePage = ref(false);
 
 window.addEventListener("scroll", () => {
   isScrolled.value = window.scrollY > 0;
@@ -12,6 +14,10 @@ if (isHomePage) {
   const offset = window.scrollY || document.documentElement.scrollTop;
   isScrolled.value = offset > 50;
 }
+
+watchEffect(() => {
+  isHomePage.value = route.name === "home";
+});
 
 const topMenu = [
   { label: "Promo", url: "" },
@@ -35,22 +41,25 @@ const bottomMenu = [
 
 <template>
   <header
-    class="fixed top-0 left-0 w-full transition-all duration-300 z-50"
-    :class="{
-      'bg-white shadow-md text-black': isScrolled && isHomePage,
-      'bg-transparent': !isScrolled && isHomePage,
-    }">
+    class="top-0 left-0 w-full transition-all duration-300 z-50"
+    :class="[
+      isScrolled && isHomePage ? 'bg-white shadow-md' : '',
+      !isScrolled && isHomePage ? 'bg-transparent' : '',
+      isHomePage ? 'fixed' : 'relative',
+    ]">
     <div class="container mx-auto max-w-7xl flex flex-col px-6 pt-4">
       <div class="flex items-center justify-between mb-1 header-top">
         <div class="logo">
-          <h2
-            class="text-2xl font-bold cursor-pointer"
-            :class="{
-              'text-black': isScrolled && isHomePage,
-              'text-white': !isScrolled && isHomePage,
-            }">
-            Traveloka Clone
-          </h2>
+          <router-link to="/">
+            <h2
+              class="text-2xl font-bold cursor-pointer"
+              :class="{
+                'text-black': isScrolled && isHomePage,
+                'text-white': !isScrolled && isHomePage,
+              }">
+              Traveloka Clone
+            </h2>
+          </router-link>
         </div>
 
         <div class="flex items-center gap-4">
