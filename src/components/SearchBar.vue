@@ -35,13 +35,13 @@ const onSearch = () => {
       <i class="pi pi-users text-lg text-blue-500 ml-2"></i>
       <input
         type="text"
-        v-model="filter.capacity"
         placeholder="1 Dewasa, 0 Anak, 1 Kamar"
         class="w-full focus:outline-none" />
     </div>
     <div class="">
       <button
-        class="bg-blue-500 text-white btn-search h-full px-3 rounded-r-md font-bold text-nowrap flex items-center gap-x-2">
+        class="bg-blue-500 text-white btn-search h-full px-3 rounded-r-md font-bold text-nowrap flex items-center gap-x-2"
+        @click="onSearch">
         <i class="pi pi-search text-lg text-white"></i>
         Cari Hotel
       </button>
