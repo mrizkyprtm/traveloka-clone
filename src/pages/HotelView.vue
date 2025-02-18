@@ -71,7 +71,7 @@ const checkboxs = [
 
       <div class="wrapper-comp flex-auto flex flex-col gap-4">
         <template v-if="hotels.length > 0">
-          <template v-for="hotel in hotels" :key="hotel.name">
+          <template v-for="hotel in hotels" :key="hotel.id">
             <HotelCard :hotel="hotel"></HotelCard>
           </template>
         </template>

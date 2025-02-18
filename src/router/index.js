@@ -14,6 +14,11 @@ const router = createRouter({
       name: "hotel",
       component: () => import("../pages/HotelView.vue"),
     },
+    {
+      path: "/hotel/details/:id",
+      name: "hotel-details",
+      component: () => import("../pages/HotelDetailsView.vue"),
+    },
   ],
 });
 

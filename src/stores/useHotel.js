@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useHotel = defineStore("hotel", () => {
   const hotels = ref([
     {
+      id: "1",
       name: "Bukit Vipassana Hotel",
       rating: 8.4,
       reviews: 1200,
@@ -15,6 +16,7 @@ export const useHotel = defineStore("hotel", () => {
       imageUrl: "img/hotel.jpeg",
     },
     {
+      id: "2",
       name: "The Gaia Hotel Bandung",
       rating: 9.0,
       reviews: 2100,
@@ -26,6 +28,7 @@ export const useHotel = defineStore("hotel", () => {
       imageUrl: "img/hotel.jpeg",
     },
     {
+      id: "3",
       name: "Bukit Papandayan Hotel",
       rating: 8.4,
       reviews: 1200,
@@ -37,6 +40,7 @@ export const useHotel = defineStore("hotel", () => {
       imageUrl: "img/hotel.jpeg",
     },
     {
+      id: "4",
       name: "Grand Hotel Preanger",
       rating: 8.1,
       reviews: 800,
@@ -48,6 +52,7 @@ export const useHotel = defineStore("hotel", () => {
       imageUrl: "img/hotel.jpeg",
     },
     {
+      id: "5",
       name: "Hotel Kedaton",
       rating: 8.0,
       reviews: 700,
@@ -59,6 +64,7 @@ export const useHotel = defineStore("hotel", () => {
       imageUrl: "img/hotel.jpeg",
     },
     {
+      id: "6",
       name: "Hotel Padjadjaran",
       rating: 7.9,
       reviews: 500,

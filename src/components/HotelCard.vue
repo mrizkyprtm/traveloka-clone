@@ -1,9 +1,16 @@
 <script setup>
 import { Button, Chip } from "primevue";
+import { useRouter } from "vue-router";
 
 defineProps({
   hotel: Object,
 });
+
+const router = useRouter();
+
+const toDetails = (id) => {
+  router.push({ name: "hotel-details", params: { id } });
+};
 </script>
 
 <template>
@@ -61,7 +68,10 @@ defineProps({
           <p class="text-red-500 text-sm font-semibold">
             Sisa 2 kamar di harga ini!
           </p>
-          <Button class="mt-4 ml-auto font-bold" severity="warn">
+          <Button
+            class="mt-4 ml-auto font-bold"
+            severity="warn"
+            @click="toDetails(hotel.id)">
             Pilih Kamar
           </Button>
         </div>
