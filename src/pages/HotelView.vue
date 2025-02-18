@@ -14,8 +14,6 @@ import SearchBar from "@/components/SearchBar.vue";
 const hotelStore = useHotel();
 const hotels = ref([]);
 
-const city = ref([]);
-
 onMounted(() => {
   hotels.value = hotelStore.hotels;
 });
@@ -27,7 +25,7 @@ watch(filter, () => {
 });
 
 const getSearchVal = (val) => {
-  console.log(val);
+  filter.name = val.name;
 };
 
 const checkboxs = [
@@ -41,42 +39,7 @@ const checkboxs = [
     <div
       class="sticky top-0 p-3 bg-white shadow-md z-10 flex justify-center items-center">
       <div class="container mx-auto max-w-7xl px-6">
-        <SearchBar @onSearch="getSearchVal"></SearchBar>
-        <div class="flex flex-auto wrapper-form">
-          <div
-            class="w-1/3 px-2 py-3 border rounded-l-md border-gray-300 transition-colors hover:border-gray-900 flex items-center gap-x-2">
-            <i class="pi pi-map-marker text-lg text-blue-500 ml-2"></i>
-            <input
-              type="text"
-              v-model="filter.name"
-              placeholder="Kota, hotel atau tempat wisata"
-              class="w-full focus:outline-none outline-0" />
-          </div>
-          <div
-            class="w-1/3 px-2 py-3 border border-gray-300 transition-colors hover:border-gray-900 flex items-center gap-x-2">
-            <i class="pi pi-calendar text-lg text-blue-500 ml-2"></i>
-            <input
-              type="text"
-              placeholder="24 Jan - 25 Jan, 1 malam"
-              class="w-full focus:outline-none" />
-          </div>
-          <div
-            class="w-1/3 px-2 py-3 border border-gray-300 transition-colors hover:border-gray-900 flex items-center gap-x-2">
-            <i class="pi pi-users text-lg text-blue-500 ml-2"></i>
-            <input
-              type="text"
-              v-model="filter.capacity"
-              placeholder="1 Dewasa, 0 Anak, 1 Kamar"
-              class="w-full focus:outline-none" />
-          </div>
-          <div class="">
-            <button
-              class="bg-blue-500 text-white btn-search h-full px-3 rounded-r-md font-bold text-nowrap flex items-center gap-x-2">
-              <i class="pi pi-search text-lg text-white"></i>
-              Cari Hotel
-            </button>
-          </div>
-        </div>
+        <SearchBar @onSearch="getSearchVal" />
       </div>
     </div>
 
@@ -106,9 +69,16 @@ const checkboxs = [
         </div>
       </div>
 
-      <div class="wrapper-comp flex flex-col gap-4">
-        <template v-for="hotel in hotels" :key="hotel.name">
-          <HotelCard :hotel="hotel"></HotelCard>
+      <div class="wrapper-comp flex-auto flex flex-col gap-4">
+        <template v-if="hotels.length > 0">
+          <template v-for="hotel in hotels" :key="hotel.name">
+            <HotelCard :hotel="hotel"></HotelCard>
+          </template>
+        </template>
+        <template v-else>
+          <div class="text-center text-lg font-bold text-gray-500 w-full">
+            <p>Maaf, hotel yang anda cari tidak ditemukan.</p>
+          </div>
         </template>
       </div>
     </div>
