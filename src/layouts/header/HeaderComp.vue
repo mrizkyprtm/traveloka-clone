@@ -28,7 +28,7 @@ const topMenu = [
 ];
 
 const bottomMenu = [
-  { label: "Hotel", url: "" },
+  { label: "Hotel", url: "/hotel" },
   { label: "Tiket Pesawat", url: "" },
   { label: "Tiket Kereta Api", url: "" },
   { label: "Tiket Bus & Travel", url: "" },
@@ -103,14 +103,14 @@ const bottomMenu = [
           class="hidden md:flex space-x-6 text-sm items-center"
           aria-label="Menu produk">
           <span v-for="(item, index) in bottomMenu" :key="index" class="flex-auto">
-            <a
-              href="#"
+            <router-link
+              :to="item.url"
               class="py-2 px-2 font-bold hover:bg-black/10 rounded"
               :class="{
                 'text-gray-700': isScrolled && isHomePage,
                 'text-white': !isScrolled && isHomePage,
               }"
-              >{{ item.label }}</a
+              >{{ item.label }}</router-link
             >
           </span>
         </nav>
