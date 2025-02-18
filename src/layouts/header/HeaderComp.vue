@@ -45,7 +45,7 @@ const bottomMenu = [
     :class="[
       isScrolled && isHomePage ? 'bg-white shadow-md' : '',
       !isScrolled && isHomePage ? 'bg-transparent' : '',
-      isHomePage ? 'fixed' : 'relative',
+      isHomePage ? 'fixed' : 'relative shadow bg-white',
     ]">
     <div class="container mx-auto max-w-7xl flex flex-col px-6 pt-4">
       <div class="flex items-center justify-between mb-1 header-top">

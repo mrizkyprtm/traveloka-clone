@@ -67,7 +67,7 @@ function copyToClipboard(code) {
               <div
                 class="flex px-4 pb-4 pt-2 justify-between items-center mt-auto gap-4">
                 <span
-                  class="text-gray-600 font-semibold bg-gray-100 rounded-md px-3 py-1 flex-auto">
+                  class="text-gray-600 font-semibold bg-gray-100 rounded-md px-3 py-2 flex-auto text-sm">
                   {{ coupon.code }}
                 </span>
                 <button
@@ -84,7 +84,6 @@ function copyToClipboard(code) {
       <div class="text-center mt-4">
         <Button
           label="Book Now"
-          class="!text-sm px-8"
           icon="pi pi-angle-right"
           iconPos="right"
           severity="warn" />
@@ -122,10 +121,6 @@ function copyToClipboard(code) {
   .wrapper-img {
     width: 40px;
     height: 40px;
-  }
-
-  .owl-theme {
-    position: relative;
   }
 
   .owl-theme .owl-nav {
@@ -171,6 +166,6 @@ function copyToClipboard(code) {
 }
 
 .p-button-label {
-  font-weight: bold !important;
+  @apply font-semibold;
 }
 </style>
