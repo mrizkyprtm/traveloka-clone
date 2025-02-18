@@ -77,6 +77,10 @@ export const useHotel = defineStore("hotel", () => {
     },
   ]);
 
+  const getHotelById = (id) => {
+    return hotels.value.find((hotel) => hotel.id === id);
+  };
+
   const filter = ref({
     name: "",
     rating: [],
@@ -116,6 +120,7 @@ export const useHotel = defineStore("hotel", () => {
 
   return {
     hotels,
+    getHotelById,
     filter,
     filteredHotels,
     setFilter,
