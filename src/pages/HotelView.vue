@@ -1,15 +1,9 @@
 <script setup>
-import {
-  Accordion,
-  AccordionPanel,
-  AccordionHeader,
-  AccordionContent,
-  Checkbox,
-} from "primevue";
 import { onMounted, ref, watch } from "vue";
 import { useHotel } from "@/stores/useHotel";
 import HotelCard from "@/components/HotelCard.vue";
 import SearchBar from "@/components/SearchBar.vue";
+import AccordionFilter from "@/components/AccordionFilter.vue";
 
 const hotelStore = useHotel();
 const hotels = ref([]);
@@ -44,31 +38,9 @@ const checkboxs = [
     </div>
 
     <div class="container mx-auto max-w-7xl p-6 flex flex-row gap-4 pt-12">
-      <div class="wrapper-comp flex flex-col gap-4">
-        <div
-          class="card flex justify-center accordion-comp max-w-[270px] min-w-[260px]">
-          <Accordion class="text-nowrap w-full" value="0">
-            <AccordionPanel value="0">
-              <AccordionHeader class="font-bold">Rating</AccordionHeader>
-              <AccordionContent>
-                <template v-for="item in checkboxs" :key="item.label">
-                  <div class="flex gap-2 items-center mb-1">
-                    <Checkbox
-                      v-model="filter.rating"
-                      name="rating"
-                      :value="item.value"
-                      :inputId="item.label" />
-                    <label :for="item.label" class="text-sm">
-                      {{ item.label }}
-                    </label>
-                  </div>
-                </template>
-              </AccordionContent>
-            </AccordionPanel>
-          </Accordion>
-        </div>
+      <div class="wrapper-comp flex flex-col gap-4 sticky top-[76px]">
+        <AccordionFilter :filter="filter" />
       </div>
-
       <div class="wrapper-comp flex-auto flex flex-col gap-4">
         <template v-if="hotels.length > 0">
           <template v-for="hotel in hotels" :key="hotel.id">
