@@ -94,6 +94,49 @@ const bookingForm = reactive({
             </div>
           </form>
         </div>
+
+        <!-- Special Requests Card -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <h3 class="text-lg font-bold mb-2">
+            Beri tahu di sini jika ada permintaan khusus
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Ketersediaan permintaanmu akan diinformasikan pada waktu check-in. Blaya
+            tambahan mungkin akan dikenakan tapi kamu masih bisa membatalkannya
+            nanti.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Kamar Bebas Asap Rokok
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Kamar dengan Pintu Penghubung
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Lantai Atas
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Tipe Ranjang
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Waktu check-in
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Waktu check-out
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              Lainnya
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
