@@ -1,4 +1,5 @@
 <script setup>
+import AddOn from "@/components/AddOn.vue";
 import { reactive, ref } from "vue";
 
 const bookingForm = reactive({
@@ -137,6 +138,9 @@ const bookingForm = reactive({
             </label>
           </div>
         </div>
+
+        <!-- Addons Card -->
+        <AddOn></AddOn>
       </div>
     </div>
   </div>
