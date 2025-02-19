@@ -10,5 +10,5 @@
 }
 
 body {
-  font-weight: 500;
+  @apply font-medium bg-slate-50;
 }

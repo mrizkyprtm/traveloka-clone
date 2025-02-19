@@ -29,7 +29,7 @@ const checkboxs = [
 ];
 </script>
 <template>
-  <div class="bg-gray-100 min-h-screen hotel-pages">
+  <div class="min-h-screen hotel-pages">
     <div
       class="sticky top-0 p-3 bg-white shadow-md z-10 flex justify-center items-center">
       <div class="container mx-auto max-w-7xl px-6">

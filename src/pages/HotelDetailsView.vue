@@ -67,6 +67,7 @@ const onBook = (id) => {
   router.push({ name: "booking", params: { id } });
 };
 </script>
+
 <template>
   <div
     class="sticky top-0 flex-1 py-3 bg-white shadow z-10 flex justify-center items-center">
