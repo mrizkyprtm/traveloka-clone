@@ -20,6 +20,9 @@ const router = createRouter({
       component: () => import("../pages/HotelDetailsView.vue"),
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { top: 0, behavior: "smooth" };
+  },
 });
 
 export default router;
