@@ -1,5 +1,6 @@
 <script setup>
 import AddOn from "@/components/AddOn.vue";
+import { Button } from "primevue";
 import { reactive, ref } from "vue";
 
 const bookingForm = reactive({
@@ -8,6 +9,17 @@ const bookingForm = reactive({
   phoneNumber: "",
   isSameAsBooker: true,
 });
+
+const priceBreakdown = {
+  roomDescription: "(1x) Superior King Bed (1 malam)",
+  roomPrice: 368569,
+  taxAndFees: 81454,
+  totalPrice: 450023,
+};
+
+const proceedToPayment = () => {
+  console.log("proceed to payment");
+};
 </script>
 
 <template>
@@ -146,6 +158,73 @@ const bookingForm = reactive({
 
         <!-- Addons Card -->
         <AddOn></AddOn>
+
+        <!-- price detail -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <h2 class="text-xl font-bold mb-4">Rincian Harga</h2>
+          <p class="text-blue-500 mb-4">
+            Login sekarang dan nikmati kupon khusus pengguna baru kami, kamu bisa
+            hemat hingga Rp1.000.000 pada pemesanan pertama.
+          </p>
+
+          <div class="mb-4">
+            <p class="flex justify-between">
+              <span>Harga Kamar</span>
+              <span>
+                Rp {{ Intl.NumberFormat("id-ID").format(priceBreakdown.roomPrice) }}
+              </span>
+            </p>
+            <p class="flex justify-between">
+              <span>{{ priceBreakdown.roomDescription }}</span>
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <p class="flex justify-between">
+              <span>Pajak dan Biaya</span>
+              <span
+                >Rp
+                {{
+                  Intl.NumberFormat("id-ID").format(priceBreakdown.taxAndFees)
+                }}</span
+              >
+            </p>
+          </div>
+
+          <div class="border-t border-gray-300 mt-4 pt-2">
+            <p class="flex justify-between font-bold">
+              <span>Harga Total</span>
+              <span
+                >Rp
+                {{
+                  Intl.NumberFormat("id-ID").format(priceBreakdown.totalPrice)
+                }}</span
+              >
+            </p>
+          </div>
+
+          <p class="text-orange-500 text-sm my-4">
+            Kamu tidak perlu bayar apa pun sekarang!
+          </p>
+
+          <Button
+            label="Lanjut ke Pembayaran"
+            severity="warn"
+            fluid
+            @click="proceedToPayment" />
+
+          <div class="flex-auto flex w-1/2 mx-auto flex-col gap-4 mt-4">
+            <p class="text-sm text-center">
+              Dengan lanjut ke pembayaran, kamu menyetujui
+              <a class="underline text-blue-600" href="#">Syarat dan ketentuan</a>,
+              <a class="underline text-blue-600" href="#">Kebijakan Privasi</a> dan
+              <a class="underline text-blue-600" href="#"
+                >Prosedur Refund Akomodasi</a
+              >
+              dari Traveloka.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
