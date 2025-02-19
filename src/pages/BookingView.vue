@@ -12,7 +12,12 @@ const bookingForm = reactive({
 
 <template>
   <div class="w-full booking-pages">
-    <div class="container mx-auto max-w-7xl p-6 flex gap-4">
+    <div class="container mx-auto max-w-7xl p-6 gap-4">
+      <h1 class="text-2xl font-bold mb-2">Pemesanan Akomodasi</h1>
+      <p class="text-gray-600 mb-6">
+        Pastikan kamu mengisi semua informasi di halaman ini dengan benar sebelum
+        melanjutkan ke pembayaran.
+      </p>
       <div class="flex flex-col gap-4 w-full">
         <div class="bg-white rounded-lg shadow-md p-4">
           <h2 class="text-xl font-bold mb-4">Data Pemesan (untuk E-voucher)</h2>
