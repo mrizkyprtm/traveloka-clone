@@ -19,6 +19,11 @@ const router = createRouter({
       name: "hotel-details",
       component: () => import("../pages/HotelDetailsView.vue"),
     },
+    {
+      path: "/booking/:id",
+      name: "booking",
+      component: () => import("../pages/BookingView.vue"),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
@@ -27,7 +32,7 @@ const router = createRouter({
         behavior: "smooth",
       };
     } else {
-    return savedPosition || { top: 0, behavior: "smooth" };
+      return savedPosition || { top: 0, behavior: "smooth" };
     }
   },
 });

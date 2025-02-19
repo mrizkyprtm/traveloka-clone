@@ -2,7 +2,7 @@
 import SearchBar from "@/components/SearchBar.vue";
 import { onMounted, ref } from "vue";
 import { useHotel } from "@/stores/useHotel";
-import { useRoute, useRouter } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 
 const hotel = ref({
   name: "Bukit Vipassana Hotel",
@@ -61,6 +61,11 @@ const room = {
     },
   ],
 };
+
+const router = useRouter();
+const onBook = (id) => {
+  router.push({ name: "booking", params: { id } });
+};
 </script>
 <template>
   <div
@@ -104,11 +109,15 @@ const room = {
         <div class="flex gap-4 items-center justify-end">
           <div class="flex flex-col items-end">
             <label for="">Harga/kamar/malam mulai dari</label>
-            <p class="text-xl font-bold text-orange-500">Rp {{ hotel.price }}</p>
+            <p class="text-xl font-bold text-orange-500">
+              Rp {{ Intl.NumberFormat("id-ID").format(hotel.price) }}
+            </p>
           </div>
-          <button class="bg-orange-500 text-white rounded-md py-2 px-4">
-            Pilih Kamar
-          </button>
+          <RouterLink :to="{ name: 'hotel-details', hash: '#room-details' }">
+            <button class="bg-orange-500 text-white rounded-md py-2 px-4">
+              Pilih Kamar
+            </button>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -201,7 +210,9 @@ const room = {
                 <span class="text-orange-500 font-bold">Rp {{ option.price }}</span>
               </td>
               <td class="py-2 px-4 border-b">
-                <button class="bg-blue-500 text-white rounded-md py-1 px-2">
+                <button
+                  class="bg-blue-500 text-white rounded-md py-1 px-2"
+                  @click="onBook(option.id)">
                   Pilih
                 </button>
               </td>
