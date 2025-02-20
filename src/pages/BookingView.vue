@@ -6,6 +6,7 @@ import CancellationPolicy from "@/components/CancellationPolicy.vue";
 import priceFormat from "@/utils/priceFormat";
 import { Button } from "primevue";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 
 const bookingForm = reactive({
   fullName: "",
@@ -21,8 +22,10 @@ const priceBreakdown = {
   totalPrice: 450023,
 };
 
+const router = useRouter();
 const proceedToPayment = () => {
   console.log("proceed to payment");
+  router.push({ name: "payment" });
 };
 </script>
 

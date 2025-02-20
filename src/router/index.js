@@ -24,6 +24,11 @@ const router = createRouter({
       name: "booking",
       component: () => import("../pages/BookingView.vue"),
     },
+    {
+      path: "/payment",
+      name: "payment",
+      component: () => import("../pages/PaymentView.vue"),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
