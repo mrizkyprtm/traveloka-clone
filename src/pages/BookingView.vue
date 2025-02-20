@@ -3,6 +3,7 @@ import AccomodationPolicy from "@/components/AccomodationPolicy.vue";
 import AddOn from "@/components/AddOn.vue";
 import BookingCard from "@/components/BookingCard.vue";
 import CancellationPolicy from "@/components/CancellationPolicy.vue";
+import priceFormat from "@/utils/priceFormat";
 import { Button } from "primevue";
 import { reactive } from "vue";
 
@@ -30,22 +31,26 @@ const proceedToPayment = () => {
     <div class="container mx-auto max-w-7xl p-6 gap-4">
       <h1 class="text-2xl font-bold mb-2">Pemesanan Akomodasi</h1>
       <p class="text-gray-600 mb-6">
-        Pastikan kamu mengisi semua informasi di halaman ini dengan benar sebelum
-        melanjutkan ke pembayaran.
+        Pastikan kamu mengisi semua informasi di halaman ini dengan benar
+        sebelum melanjutkan ke pembayaran.
       </p>
       <div class="flex gap-4">
         <div class="flex flex-col gap-4 w-2/3">
           <div class="bg-white rounded-lg shadow-md p-4">
-            <h2 class="text-xl font-bold mb-4">Data Pemesan (untuk E-voucher)</h2>
+            <h2 class="text-xl font-bold mb-4">
+              Data Pemesan (untuk E-voucher)
+            </h2>
             <p class="text-gray-600 mb-4">
-              Isilah semua kolom dengan benar untuk memastikan kamu dapat menerima
-              voucher konfirmasi pemesanan di email yang dicantumkan.
+              Isilah semua kolom dengan benar untuk memastikan kamu dapat
+              menerima voucher konfirmasi pemesanan di email yang dicantumkan.
             </p>
 
             <form @submit.prevent="submitForm()">
               <!-- Full Name -->
               <div class="mb-4">
-                <label for="fullName" class="block text-gray-700 font-semibold">
+                <label
+                  for="fullName"
+                  class="block text-gray-700 font-semibold">
                   Nama Lengkap (sesuai KTP/Paspor/SIM)
                 </label>
                 <input
@@ -58,40 +63,46 @@ const proceedToPayment = () => {
                   placeholder="Masukkan nama lengkap" />
               </div>
 
-              <!-- Email -->
-              <div class="mb-4">
-                <label for="email" class="block text-gray-700 font-semibold"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  v-model="bookingForm.email"
-                  name="email"
-                  required
-                  class="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Masukkan email" />
-              </div>
-
-              <!-- Phone Number -->
-              <div class="mb-4">
-                <label for="phoneNumber" class="block text-gray-700 font-semibold">
-                  Nomor Handphone
-                </label>
-                <div class="flex">
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Email -->
+                <div class="mb-4">
+                  <label
+                    for="email"
+                    class="block text-gray-700 font-semibold"
+                    >Email</label
+                  >
                   <input
-                    type="text"
-                    class="w-1/4 border border-gray-300 rounded-md p-2"
-                    value="+62"
-                    readonly />
-                  <input
-                    type="text"
-                    id="phoneNumber"
-                    v-model="bookingForm.phoneNumber"
-                    name="phoneNumber"
+                    type="email"
+                    id="email"
+                    v-model="bookingForm.email"
+                    name="email"
                     required
-                    class="w-full border border-gray-300 rounded-md p-2 ml-2"
-                    placeholder="Masukkan nomor handphone" />
+                    class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                    placeholder="Masukkan email" />
+                </div>
+
+                <!-- Phone Number -->
+                <div class="mb-4">
+                  <label
+                    for="phoneNumber"
+                    class="block text-gray-700 font-semibold mb-1">
+                    Nomor Handphone
+                  </label>
+                  <div class="flex">
+                    <input
+                      type="text"
+                      class="w-1/6 border border-gray-300 rounded-md p-2"
+                      value="+62"
+                      readonly />
+                    <input
+                      type="text"
+                      id="phoneNumber"
+                      v-model="bookingForm.phoneNumber"
+                      name="phoneNumber"
+                      required
+                      class="w-full border border-gray-300 rounded-md p-2 ml-2"
+                      placeholder="Masukkan nomor handphone" />
+                  </div>
                 </div>
               </div>
 
@@ -102,7 +113,7 @@ const proceedToPayment = () => {
                     type="radio"
                     v-model="bookingForm.isSameAsBooker"
                     name="bookingOption"
-                    value="same"
+                    :value="true"
                     class="mr-2" />
                   <span>Sama dengan pemesan</span>
                 </label>
@@ -111,13 +122,17 @@ const proceedToPayment = () => {
                     type="radio"
                     v-model="bookingForm.isSameAsBooker"
                     name="bookingOption"
-                    value="other"
+                    :value="false"
                     class="mr-2" />
                   <span>Saya memesanan untuk orang lain</span>
                 </label>
               </div>
-              <div v-if="bookingForm.isSameAsBooker === 'other'" class="mb-4">
-                <label for="name" class="block font-semibold text-gray-700"
+              <div
+                v-if="!bookingForm.isSameAsBooker"
+                class="mb-4">
+                <label
+                  for="name"
+                  class="block font-semibold text-gray-700"
                   >Nama Lengkap Tamu</label
                 >
                 <input
@@ -144,31 +159,45 @@ const proceedToPayment = () => {
 
             <div class="grid grid-cols-2 gap-4">
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Kamar Bebas Asap Rokok
               </label>
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Kamar dengan Pintu Penghubung
               </label>
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Lantai Atas
               </label>
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Tipe Ranjang
               </label>
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Waktu check-in
               </label>
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Waktu check-out
               </label>
               <label class="flex items-center">
-                <input type="checkbox" class="mr-2" />
+                <input
+                  type="checkbox"
+                  class="mr-2" />
                 Lainnya
               </label>
             </div>
@@ -181,16 +210,15 @@ const proceedToPayment = () => {
           <div class="bg-white rounded-lg shadow-md p-4">
             <h2 class="text-xl font-bold mb-4">Rincian Harga</h2>
             <p class="text-blue-500 mb-4">
-              Login sekarang dan nikmati kupon khusus pengguna baru kami, kamu bisa
-              hemat hingga Rp1.000.000 pada pemesanan pertama.
+              Login sekarang dan nikmati kupon khusus pengguna baru kami, kamu
+              bisa hemat hingga Rp1.000.000 pada pemesanan pertama.
             </p>
 
             <div class="mb-4">
               <p class="flex justify-between">
                 <span>Harga Kamar</span>
                 <span>
-                  Rp
-                  {{ Intl.NumberFormat("id-ID").format(priceBreakdown.roomPrice) }}
+                  {{ priceFormat(priceBreakdown.roomPrice) }}
                 </span>
               </p>
               <p class="flex justify-between">
@@ -201,24 +229,16 @@ const proceedToPayment = () => {
             <div class="mb-4">
               <p class="flex justify-between">
                 <span>Pajak dan Biaya</span>
-                <span
-                  >Rp
-                  {{
-                    Intl.NumberFormat("id-ID").format(priceBreakdown.taxAndFees)
-                  }}</span
-                >
+                <span>
+                  {{ priceFormat(priceBreakdown.taxAndFees) }}
+                </span>
               </p>
             </div>
 
             <div class="border-t border-gray-300 mt-4 pt-2">
               <p class="flex justify-between font-bold">
                 <span>Harga Total</span>
-                <span
-                  >Rp
-                  {{
-                    Intl.NumberFormat("id-ID").format(priceBreakdown.totalPrice)
-                  }}</span
-                >
+                <span> {{ priceFormat(priceBreakdown.totalPrice) }} </span>
               </p>
             </div>
 
@@ -230,14 +250,30 @@ const proceedToPayment = () => {
               label="Lanjut ke Pembayaran"
               severity="warn"
               fluid
+              :pt="{
+                label: {
+                  class: 'font-semibold',
+                },
+              }"
               @click="proceedToPayment" />
 
             <div class="flex-auto flex w-1/2 mx-auto flex-col gap-4 mt-4">
               <p class="text-sm text-center">
                 Dengan lanjut ke pembayaran, kamu menyetujui
-                <a class="underline text-blue-600" href="#">Syarat dan ketentuan</a>,
-                <a class="underline text-blue-600" href="#">Kebijakan Privasi</a> dan
-                <a class="underline text-blue-600" href="#"
+                <a
+                  class="underline text-blue-600"
+                  href="#">
+                  Syarat dan ketentuan </a
+                >,
+                <a
+                  class="underline text-blue-600"
+                  href="#">
+                  Kebijakan Privasi
+                </a>
+                dan
+                <a
+                  class="underline text-blue-600"
+                  href="#"
                   >Prosedur Refund Akomodasi</a
                 >
                 dari Traveloka.

@@ -1,4 +1,5 @@
 <script setup>
+import priceFormat from "@/utils/priceFormat";
 import { Button, Chip } from "primevue";
 import { useRouter } from "vue-router";
 
@@ -19,18 +20,30 @@ const toDetails = (id) => {
       <!-- Gambar -->
       <div class="w-1/3 flex flex-col gap-2">
         <div class="top-img w-full">
-          <img src="/img/hotel.jpeg" alt="Hotel Room" class="w-full h-auto" />
+          <img
+            src="/img/hotel.jpeg"
+            alt="Hotel Room"
+            class="w-full h-auto" />
         </div>
 
         <div class="bottom-img flex gap-2">
           <div class="wrapper-img flex-auto">
-            <img src="/img/hotel.jpeg" alt="Hotel Room" class="w-full h-auto" />
+            <img
+              src="/img/hotel.jpeg"
+              alt="Hotel Room"
+              class="w-full h-auto" />
           </div>
           <div class="wrapper-img flex-auto">
-            <img src="/img/hotel.jpeg" alt="Hotel Room" class="w-full h-auto" />
+            <img
+              src="/img/hotel.jpeg"
+              alt="Hotel Room"
+              class="w-full h-auto" />
           </div>
           <div class="wrapper-img flex-auto">
-            <img src="/img/hotel.jpeg" alt="Hotel Room" class="w-full h-auto" />
+            <img
+              src="/img/hotel.jpeg"
+              alt="Hotel Room"
+              class="w-full h-auto" />
           </div>
         </div>
       </div>
@@ -55,15 +68,16 @@ const toDetails = (id) => {
         </div>
 
         <!-- Harga dan Tombol -->
-        <div class="text-right flex flex-col shadow-left p-4 items-end justify-end">
+        <div
+          class="text-right flex flex-col shadow-left p-4 items-end justify-end">
           <div class="text-green-600 text-sm font-semibold">
             {{ hotel.discount }}% OFF
           </div>
           <div class="text-gray-400 line-through text-sm">
-            Rp {{ Intl.NumberFormat("id-ID").format(hotel.originalPrice) }}
+            {{ priceFormat(hotel.originalPrice) }}
           </div>
           <div class="text-orange-500 text-lg font-bold">
-            Rp {{ Intl.NumberFormat("id-ID").format(hotel.price) }}
+            {{ priceFormat(hotel.price) }}
           </div>
           <p class="text-red-500 text-sm font-semibold">
             Sisa 2 kamar di harga ini!

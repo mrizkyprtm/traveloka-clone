@@ -1,4 +1,6 @@
 <script setup>
+import priceFormat from "@/utils/priceFormat";
+
 const booking = {
   hotelName: "Bukit Vipassana Hotel",
   rating: 8.4,
@@ -62,10 +64,10 @@ const booking = {
       </div>
       <div class="text-right">
         <p class="text-gray-500 line-through text-sm">
-          Rp {{ Intl.NumberFormat("id-ID").format(booking.originalPrice) }}
+          {{ priceFormat(booking.originalPrice) }}
         </p>
         <p class="text-lg font-bold text-orange-500">
-          Rp {{ Intl.NumberFormat("id-ID").format(booking.totalPrice) }}
+          {{ priceFormat(booking.totalPrice) }}
         </p>
       </div>
     </div>

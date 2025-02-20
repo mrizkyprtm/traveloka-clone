@@ -3,6 +3,7 @@ import SearchBar from "@/components/SearchBar.vue";
 import { onMounted, ref } from "vue";
 import { useHotel } from "@/stores/useHotel";
 import { RouterLink, useRoute, useRouter } from "vue-router";
+import priceFormat from "@/utils/priceFormat";
 
 const hotel = ref({
   name: "Bukit Vipassana Hotel",
@@ -19,10 +20,17 @@ const hotel = ref({
     "/img/hotel.jpeg",
     "/img/hotel.jpeg",
   ],
-  description: "Hotel ini menawarkan kenyamanan dan fasilitas terbaik untuk Anda.",
+  description:
+    "Hotel ini menawarkan kenyamanan dan fasilitas terbaik untuk Anda.",
   address:
     "JL. Kolonel Masturi No. 99, Lembang, Bandung, Jawa Barat, Indonesia, 40391",
-  amenities: ["Restoran", "Kolam Renang", "Resepsionis 24 Jam", "WiFi", "Parkir"],
+  amenities: [
+    "Restoran",
+    "Kolam Renang",
+    "Resepsionis 24 Jam",
+    "WiFi",
+    "Parkir",
+  ],
 });
 
 const { getHotelById } = useHotel();
@@ -92,7 +100,10 @@ const onBook = (id) => {
           v-for="image in hotel.images.slice(1)"
           :key="image"
           class="overflow-hidden shadow-md flex-auto">
-          <img :src="image" :alt="hotel.name" class="w-full h-full object-cover" />
+          <img
+            :src="image"
+            :alt="hotel.name"
+            class="w-full h-full object-cover" />
         </div>
       </div>
     </div>
@@ -111,7 +122,7 @@ const onBook = (id) => {
           <div class="flex flex-col items-end">
             <label for="">Harga/kamar/malam mulai dari</label>
             <p class="text-xl font-bold text-orange-500">
-              Rp {{ Intl.NumberFormat("id-ID").format(hotel.price) }}
+              {{ priceFormat(hotel.price) }}
             </p>
           </div>
           <RouterLink :to="{ name: 'hotel-details', hash: '#room-details' }">
@@ -136,7 +147,9 @@ const onBook = (id) => {
       <div class="bg-white rounded-lg shadow-md p-4">
         <h3 class="text-lg font-semibold">Mengesankan</h3>
         <div class="flex items-center">
-          <span class="text-blue-500 font-bold text-2xl">{{ hotel.rating }}</span>
+          <span class="text-blue-500 font-bold text-2xl">
+            {{ hotel.rating }}
+          </span>
           <span class="text-gray-500 text-sm">
             (Dari {{ hotel.reviews }} review tamu yang terverifikasi)</span
           >
@@ -154,7 +167,9 @@ const onBook = (id) => {
       <div class="bg-white rounded-lg shadow-md p-4">
         <h3 class="text-lg font-semibold">Fasilitas Utama</h3>
         <ul class="list-disc pl-5">
-          <li v-for="amenity in hotel.amenities" class="text-gray-600">
+          <li
+            v-for="amenity in hotel.amenities"
+            class="text-gray-600">
             {{ amenity }}
           </li>
         </ul>
@@ -168,7 +183,9 @@ const onBook = (id) => {
   </div>
 
   <!-- room -->
-  <div class="container mx-auto max-w-7xl px-4 py-4" id="room-details">
+  <div
+    class="container mx-auto max-w-7xl px-4 py-4"
+    id="room-details">
     <div class="flex flex-col md:flex-row">
       <!-- Left Side: Room Information -->
       <div class="md:w-1/4 mb-6 md:mb-0">
@@ -205,10 +222,13 @@ const onBook = (id) => {
                 {{ option.guests }} orang
               </td>
               <td class="py-2 px-4 border-b text-center">
-                <span class="line-through text-gray-500"
-                  >Rp {{ option.originalPrice }}</span
-                ><br />
-                <span class="text-orange-500 font-bold">Rp {{ option.price }}</span>
+                <span class="line-through text-gray-500">
+                  {{ priceFormat(option.originalPrice) }}
+                </span>
+                <br />
+                <span class="text-orange-500 font-bold">
+                  {{ priceFormat(option.price) }}
+                </span>
               </td>
               <td class="py-2 px-4 border-b">
                 <button
