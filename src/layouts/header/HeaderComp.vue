@@ -47,18 +47,18 @@ const bottomMenu = [
       !isScrolled && isHomePage ? 'bg-transparent' : '',
       isHomePage ? 'fixed' : 'relative shadow bg-white',
     ]">
-    <div class="container mx-auto max-w-7xl flex flex-col px-6 pt-4">
+    <div class="container mx-auto max-w-7xl flex flex-col px-6 pt-2">
       <div class="flex items-center justify-between mb-1 header-top">
         <div class="logo">
           <router-link to="/">
-            <h2
+            <h5
               class="text-2xl font-bold cursor-pointer"
               :class="{
                 'text-black': isScrolled && isHomePage,
                 'text-white': !isScrolled && isHomePage,
               }">
               Traveloka Clone
-            </h2>
+            </h5>
           </router-link>
         </div>
 
@@ -102,12 +102,15 @@ const bottomMenu = [
         <nav
           class="hidden md:flex space-x-6 text-sm items-center"
           aria-label="Menu produk">
-          <span v-for="(item, index) in bottomMenu" :key="index" class="flex-auto">
+          <span
+            v-for="(item, index) in bottomMenu"
+            :key="index"
+            class="flex-auto">
             <router-link
               :to="item.url"
               class="py-2 px-2 font-bold hover:bg-black/10 rounded"
               :class="{
-                'text-gray-700': isScrolled && isHomePage,
+                'text-gray-500': (isScrolled && isHomePage) || !isHomePage,
                 'text-white': !isScrolled && isHomePage,
               }"
               >{{ item.label }}</router-link
