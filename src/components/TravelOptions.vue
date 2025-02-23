@@ -20,8 +20,10 @@ const travelOptions = [
 </script>
 <template>
   <div>
-    <div class="container mx-auto max-w-7xl px-4 xl:px-0 py-10">
-      <h2 class="text-xl font-bold mb-6">Maksimalkan Rencana Sesukamu</h2>
+    <div class="container mx-auto max-w-7xl px-4 xl:px-0 py-6">
+      <h3 class="text-2xl font-bold mb-6 text-neutral-700">
+        Maksimalkan Rencana Sesukamu
+      </h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div
           v-for="option in travelOptions"
@@ -32,7 +34,7 @@ const travelOptions = [
             :alt="option.title"
             class="w-full h-48 object-cover" />
           <div class="p-4">
-            <h3 class="text-lg font-semibold">{{ option.title }}</h3>
+            <h6 class="font-bold">{{ option.title }}</h6>
           </div>
         </div>
       </div>

@@ -56,13 +56,15 @@ const menuItems = [
     <div class="relative from-blue-900 to-transparent pt-10">
       <div
         class="container mx-auto max-w-7xl px-6 xl:px-0 py-12 text-white flex flex-col">
-        <h1 class="text-3xl font-bold mx-auto hero-title text-white">
+        <h1 class="text-3xl font-bold mx-auto text-white leading-[56px]">
           Wujudkan Perjalananmu dengan Caramu
         </h1>
         <div class="bg-transparent rounded-lg mt-6 p-6 text-white box-border">
           <div
             class="flex items-center justify-between space-x-2 border-b-2 border-solid pb-4 box-border text-gray-300">
-            <template v-for="(item, index) of menuItems" :key="index">
+            <template
+              v-for="(item, index) of menuItems"
+              :key="index">
               <button
                 class="rounded-3xl text-black flex flex-col justify-center items-center gap-2 px-6 py-2 h-full mh-80"
                 :class="{
@@ -71,7 +73,9 @@ const menuItems = [
                     !item.isActive,
                 }">
                 <span class="icon">
-                  <img :src="item.path" :alt="item.label" />
+                  <img
+                    :src="item.path"
+                    :alt="item.label" />
                 </span>
                 <span
                   class="font-bold"
@@ -172,7 +176,7 @@ const menuItems = [
                   <button
                     class="absolute bg-orange-500 text-white btn-search"
                     @click="$router.push('/hotel')">
-                    Cari
+                    <i class="pi pi-search"></i>
                   </button>
                 </div>
               </div>
@@ -190,11 +194,6 @@ const menuItems = [
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 600px;
-
-  .hero-title {
-    font-size: 32px;
-    line-height: 56px;
-  }
 
   .icon {
     height: 30px;
@@ -224,7 +223,7 @@ const menuItems = [
   .btn-search {
     top: 0;
     right: 0;
-    width: 45px;
+    width: 50px;
     height: 100%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;

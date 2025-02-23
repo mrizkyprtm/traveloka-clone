@@ -34,10 +34,11 @@ const destinations = [
 </script>
 <template>
   <div class="container mx-auto max-w-7xl px-4 xl:px-0 py-10">
-    <h2 class="text-2xl font-bold mb-6">
+    <h3 class="text-2xl font-bold mb-6 text-neutral-700">
       Temukan yang kamu suka di Asia hingga dunia
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+    </h3>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
       <div
         v-for="destination in destinations"
         :key="destination.name"
@@ -47,8 +48,10 @@ const destinations = [
           alt="{{ destination.name }}"
           class="w-full h-48 object-cover absolute -z-1" />
         <div class="p-4 bg-transparent relative text-white">
-          <h3 class="text-lg font-semibold text-white">{{ destination.name }}</h3>
-          <p class="text-sm font-semibold text-white">
+          <h4 class="text-xl font-semibold text-white">
+            {{ destination.name }}
+          </h4>
+          <p class="font-semibold text-white">
             {{ destination.accommodations }} accommodations
           </p>
         </div>
