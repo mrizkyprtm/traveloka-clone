@@ -10,5 +10,6 @@
 }
 
 body {
-  @apply font-medium bg-slate-50;
+  @apply font-medium bg-slate-50 text-neutral-900;
+  font-size: clamp(0.7292rem, 0.6629rem + 0.2652vw, 0.875rem);
 }
