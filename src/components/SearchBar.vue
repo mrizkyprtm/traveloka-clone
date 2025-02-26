@@ -16,7 +16,7 @@ const onSearch = () => {
     <div class="flex flex-auto wrapper-form">
       <div
         class="w-1/3 px-2 py-3 border rounded-l-md border-gray-300 transition-colors hover:border-gray-900 flex items-center gap-x-2">
-        <i class="pi pi-map-marker text-lg text-blue-500 ml-2"></i>
+        <i class="pi pi-map-marker text-lg text-sky-500 ml-2"></i>
         <input
           type="text"
           v-model="filter.name"
@@ -25,7 +25,7 @@ const onSearch = () => {
       </div>
       <div
         class="w-1/3 px-2 py-3 border border-gray-300 transition-colors hover:border-gray-900 flex items-center gap-x-2">
-        <i class="pi pi-calendar text-lg text-blue-500 ml-2"></i>
+        <i class="pi pi-calendar text-lg text-sky-500 ml-2"></i>
         <input
           type="text"
           placeholder="24 Jan - 25 Jan, 1 malam"
@@ -33,7 +33,7 @@ const onSearch = () => {
       </div>
       <div
         class="w-1/3 px-2 py-3 border border-gray-300 transition-colors hover:border-gray-900 flex items-center gap-x-2">
-        <i class="pi pi-users text-lg text-blue-500 ml-2"></i>
+        <i class="pi pi-users text-lg text-sky-500 ml-2"></i>
         <input
           type="text"
           placeholder="1 Dewasa, 0 Anak, 1 Kamar"
@@ -41,7 +41,7 @@ const onSearch = () => {
       </div>
       <div class="">
         <button
-          class="bg-blue-500 text-white btn-search h-full px-3 rounded-r-md font-bold text-nowrap flex items-center gap-x-2"
+          class="bg-sky-500 text-white btn-search h-full px-3 rounded-r-md font-bold text-nowrap flex items-center gap-x-2"
           @click="onSearch">
           <i class="pi pi-search text-lg text-white"></i>
           Cari Hotel
