@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const hotelDetails = {
   bookingNumber: "1219624837",
   hotelName: "Bukit Vipassana Hotel",
@@ -25,7 +25,7 @@ const hotelDetails = {
 </script>
 
 <template>
-  <div class="bg-lime-200 rounded-lg overflow-hidden">
+  <div class="bg-lime-200 rounded-lg overflow-hidden sticky top-4">
     <div class="bg-sky-200 py-2 px-4">
       <h2 class="text-xl font-bold">Rincian Hotel</h2>
       <p class="text-gray-600 text-sm font-semibold">
@@ -96,9 +96,7 @@ const hotelDetails = {
 
         <h4 class="font-bold mt-4 text-sm">Kebijakan Pembatalan</h4>
         <ul class="list-disc pl-5">
-          <li
-            v-for="policy of hotelDetails.refundPolicy"
-            class="text-gray-600">
+          <li v-for="policy of hotelDetails.refundPolicy" class="text-gray-600">
             {{ policy }}
           </li>
         </ul>
