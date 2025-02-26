@@ -4,6 +4,7 @@ import { onMounted, ref } from "vue";
 import { useHotel } from "@/stores/useHotel";
 import { RouterLink, useRoute, useRouter } from "vue-router";
 import priceFormat from "@/utils/priceFormat";
+import { Button } from "primevue";
 
 const hotel = ref({
   name: "Bukit Vipassana Hotel",
@@ -84,8 +85,8 @@ const onBook = (id) => {
     </div>
   </div>
 
-  <div class="container mx-auto max-w-7xl px-6 py-6 bg-white">
-    <div class="flex gap-4 warpper-content">
+  <div class="container mx-auto max-w-7xl px-4 pt-6">
+    <div class="flex gap-2 rounded-t-lg overflow-hidden">
       <!-- Main Image -->
       <div class="w-1/2 m-img">
         <img
@@ -95,7 +96,7 @@ const onBook = (id) => {
       </div>
 
       <!-- Image Gallery -->
-      <div class="flex-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="flex-auto grid grid-cols-2 md:grid-cols-3 gap-2">
         <div
           v-for="image in hotel.images.slice(1)"
           :key="image"
@@ -109,11 +110,21 @@ const onBook = (id) => {
     </div>
   </div>
 
-  <div class="container mx-auto max-w-7xl px-4 py-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="card">
-        <h2 class="text-2xl font-bold mb-4">{{ hotel.name }}</h2>
-        <p class="text-gray-600 mb-4">{{ hotel.location }}</p>
+  <div
+    class="container mx-auto max-w-7xl px-4 py-4 bg-white rounded-xl shadow-[0px_0px_6px_rgba(0,0,0,0.1)]">
+    <div class="flex items-center gap-4 mb-4">
+      <div class="flex-1 card space-y-1">
+        <h2 class="font-bold text-2xl leading-8">{{ hotel.name }}</h2>
+        <div class="flex items-center gap-2">
+          <div
+            class="w-fit text-sm text-sky-700 py-1 px-2 rounded-full bg-sky-100">
+            <p>Hotel</p>
+          </div>
+          <div>
+            <i v-for="i in 5" class="pi pi-star-fill text-yellow-400"></i>
+          </div>
+        </div>
+        <p class="text-gray-600">{{ hotel.location }}</p>
       </div>
 
       <div class="card">
@@ -121,14 +132,19 @@ const onBook = (id) => {
         <div class="flex gap-4 items-center justify-end">
           <div class="flex flex-col items-end">
             <label for="">Harga/kamar/malam mulai dari</label>
-            <p class="text-xl font-bold text-orange-500">
+            <p class="!text-xl font-bold text-orange-500">
               {{ priceFormat(hotel.price) }}
             </p>
           </div>
           <RouterLink :to="{ name: 'hotel-details', hash: '#room-details' }">
-            <button class="bg-orange-500 text-white rounded-md py-2 px-4">
-              Pilih Kamar
-            </button>
+            <Button
+              :pt="{
+                label: {
+                  class: 'font-semibold',
+                },
+              }"
+              label="Pilih Kamar"
+              severity="warn" />
           </RouterLink>
         </div>
       </div>
@@ -144,32 +160,48 @@ const onBook = (id) => {
     <!-- Grid Layout for Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <!-- Rating Card -->
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <h3 class="text-lg font-semibold">Mengesankan</h3>
-        <div class="flex items-center">
-          <span class="text-blue-500 font-bold text-2xl">
+      <div class="flex gap-2 bg-white rounded-lg border p-4">
+        <div class="h-fit border border-sky-600 rounded-lg p-2">
+          <span class="text-sky-500 font-bold text-xl">
             {{ hotel.rating }}
           </span>
-          <span class="text-gray-500 text-sm">
-            (Dari {{ hotel.reviews }} review tamu yang terverifikasi)</span
-          >
+        </div>
+        <div class="h-fit flex flex-col">
+          <h3 class="font-bold text-lg">Mengesankan</h3>
+          <span class="text-sky-500 text-sm font-bold">
+            Dari {{ hotel.reviews }} review tamu yang terverifikasi
+          </span>
         </div>
       </div>
 
       <!-- Accommodation Card -->
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <h3 class="text-lg font-semibold">Area Akomodasi</h3>
-        <p class="text-gray-600">{{ hotel.address }}</p>
-        <button class="text-blue-500 underline">Lihat Peta</button>
+      <div class="bg-white rounded-lg border p-4 space-y-3">
+        <div class="flex justify-between items-center">
+          <h4 class="font-bold">Area Akomodasi</h4>
+          <a href="#" class="flex gap-2 items-center text-sky-500 font-bold">
+            <span>Lihat Peta</span>
+            <i class="pi pi-chevron-right text-xs"></i>
+          </a>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="pi pi-map-marker"></i>
+          <p class="text-gray-600">
+            {{ hotel.address }}
+          </p>
+        </div>
       </div>
 
       <!-- Facilities Card -->
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <h3 class="text-lg font-semibold">Fasilitas Utama</h3>
+      <div class="bg-white rounded-lg border p-4 space-y-3">
+        <div class="flex justify-between items-center">
+          <h4 class="font-bold">Fasilitas Utama</h4>
+          <a href="#" class="flex gap-2 items-center text-sky-500 font-bold">
+            <span>Selengkapnya</span>
+            <i class="pi pi-chevron-right text-xs"></i>
+          </a>
+        </div>
         <ul class="list-disc pl-5">
-          <li
-            v-for="amenity in hotel.amenities"
-            class="text-gray-600">
+          <li v-for="amenity in hotel.amenities" class="text-gray-600">
             {{ amenity }}
           </li>
         </ul>
@@ -183,13 +215,11 @@ const onBook = (id) => {
   </div>
 
   <!-- room -->
-  <div
-    class="container mx-auto max-w-7xl px-4 py-4"
-    id="room-details">
+  <div class="container mx-auto max-w-7xl px-4 py-4" id="room-details">
     <div class="flex flex-col md:flex-row">
       <!-- Left Side: Room Information -->
       <div class="md:w-1/4 mb-6 md:mb-0">
-        <h2 class="text-2xl font-bold mb-2">{{ room.name }}</h2>
+        <h5 class="text-2xl font-bold mb-2">{{ room.name }}</h5>
         <div class="w-full">
           <img
             :src="room.imageUrl"
