@@ -7,7 +7,7 @@ import DestinationCard from "@/components/DestinationCard.vue";
 </script>
 
 <template>
-  <main class="min-h-screen">
+  <main class="bg-white min-h-screen">
     <Hero />
     <PromoBanner />
     <CouponList />
