@@ -30,19 +30,19 @@ const proceedToPayment = () => {
 </script>
 
 <template>
-  <div class="w-full booking-pages">
+  <section class="booking-pages">
     <div class="container mx-auto max-w-7xl p-6 gap-4">
-      <h1 class="text-2xl font-bold mb-2">Pemesanan Akomodasi</h1>
+      <h2 class="text-2xl font-bold mb-2">Pemesanan Akomodasi</h2>
       <p class="text-gray-600 mb-6">
         Pastikan kamu mengisi semua informasi di halaman ini dengan benar
         sebelum melanjutkan ke pembayaran.
       </p>
-      <div class="flex gap-4">
-        <div class="flex flex-col gap-4 w-2/3">
-          <div class="bg-white rounded-lg shadow-md p-4">
-            <h2 class="text-xl font-bold mb-4">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex flex-col gap-4 lg:w-2/3">
+          <div class="bg-white rounded-lg p-4">
+            <h3 class="text-lg font-bold mb-4">
               Data Pemesan (untuk E-voucher)
-            </h2>
+            </h3>
             <p class="text-gray-600 mb-4">
               Isilah semua kolom dengan benar untuk memastikan kamu dapat
               menerima voucher konfirmasi pemesanan di email yang dicantumkan.
@@ -51,9 +51,7 @@ const proceedToPayment = () => {
             <form @submit.prevent="submitForm()">
               <!-- Full Name -->
               <div class="mb-4">
-                <label
-                  for="fullName"
-                  class="block text-gray-700 font-semibold">
+                <label for="fullName" class="block text-gray-700 font-semibold">
                   Nama Lengkap (sesuai KTP/Paspor/SIM)
                 </label>
                 <input
@@ -69,9 +67,7 @@ const proceedToPayment = () => {
               <div class="grid grid-cols-2 gap-4">
                 <!-- Email -->
                 <div class="mb-4">
-                  <label
-                    for="email"
-                    class="block text-gray-700 font-semibold"
+                  <label for="email" class="block text-gray-700 font-semibold"
                     >Email</label
                   >
                   <input
@@ -130,12 +126,8 @@ const proceedToPayment = () => {
                   <span>Saya memesanan untuk orang lain</span>
                 </label>
               </div>
-              <div
-                v-if="!bookingForm.isSameAsBooker"
-                class="mb-4">
-                <label
-                  for="name"
-                  class="block font-semibold text-gray-700"
+              <div v-if="!bookingForm.isSameAsBooker" class="mb-4">
+                <label for="name" class="block font-semibold text-gray-700"
                   >Nama Lengkap Tamu</label
                 >
                 <input
@@ -150,7 +142,7 @@ const proceedToPayment = () => {
           </div>
 
           <!-- Special Requests Card -->
-          <div class="bg-white rounded-lg shadow-md p-4">
+          <div class="bg-white rounded-lg p-4">
             <h3 class="text-lg font-bold mb-2">
               Beri tahu di sini jika ada permintaan khusus
             </h3>
@@ -162,45 +154,31 @@ const proceedToPayment = () => {
 
             <div class="grid grid-cols-2 gap-4">
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Kamar Bebas Asap Rokok
               </label>
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Kamar dengan Pintu Penghubung
               </label>
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Lantai Atas
               </label>
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Tipe Ranjang
               </label>
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Waktu check-in
               </label>
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Waktu check-out
               </label>
               <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="mr-2" />
+                <input type="checkbox" class="mr-2" />
                 Lainnya
               </label>
             </div>
@@ -210,9 +188,9 @@ const proceedToPayment = () => {
           <AddOn></AddOn>
 
           <!-- price detail -->
-          <div class="bg-white rounded-lg shadow-md p-4">
-            <h2 class="text-xl font-bold mb-4">Rincian Harga</h2>
-            <p class="text-blue-500 mb-4">
+          <div class="bg-white rounded-lg p-4">
+            <h3 class="text-lg font-bold mb-4">Rincian Harga</h3>
+            <p class="text-sky-500 bg-sky-100 rounded-lg p-4 mb-4">
               Login sekarang dan nikmati kupon khusus pengguna baru kami, kamu
               bisa hemat hingga Rp1.000.000 pada pemesanan pertama.
             </p>
@@ -245,7 +223,7 @@ const proceedToPayment = () => {
               </p>
             </div>
 
-            <p class="text-orange-500 text-sm my-4">
+            <p class="text-orange-500 text-sm my-4 font-bold">
               Kamu tidak perlu bayar apa pun sekarang!
             </p>
 
@@ -260,23 +238,17 @@ const proceedToPayment = () => {
               }"
               @click="proceedToPayment" />
 
-            <div class="flex-auto flex w-1/2 mx-auto flex-col gap-4 mt-4">
+            <div class="flex-auto flex lg:w-1/2 mx-auto flex-col gap-4 mt-4">
               <p class="text-sm text-center">
                 Dengan lanjut ke pembayaran, kamu menyetujui
-                <a
-                  class="underline text-blue-600"
-                  href="#">
+                <a class="underline text-blue-600" href="#">
                   Syarat dan ketentuan </a
                 >,
-                <a
-                  class="underline text-blue-600"
-                  href="#">
+                <a class="underline text-blue-600" href="#">
                   Kebijakan Privasi
                 </a>
                 dan
-                <a
-                  class="underline text-blue-600"
-                  href="#"
+                <a class="underline text-blue-600" href="#"
                   >Prosedur Refund Akomodasi</a
                 >
                 dari Traveloka.
@@ -284,12 +256,14 @@ const proceedToPayment = () => {
             </div>
           </div>
         </div>
-        <div class="w-1/3 space-y-4">
-          <BookingCard />
-          <CancellationPolicy />
-          <AccomodationPolicy />
-        </div>
+        <aside class="lg:w-1/3">
+          <div class="space-y-4 sticky top-4">
+            <BookingCard />
+            <CancellationPolicy />
+            <AccomodationPolicy />
+          </div>
+        </aside>
       </div>
     </div>
-  </div>
+  </section>
 </template>

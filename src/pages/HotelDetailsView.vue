@@ -1,10 +1,28 @@
 <script setup>
 import SearchBar from "@/components/SearchBar.vue";
-import { onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useHotel } from "@/stores/useHotel";
 import { RouterLink, useRoute, useRouter } from "vue-router";
 import priceFormat from "@/utils/priceFormat";
-import { Button } from "primevue";
+import { Button, Tab, TabList, Tabs } from "primevue";
+
+const scrollY = ref(0);
+window.addEventListener("scroll", () => {
+  scrollY.value = window.scrollY;
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", () => {
+    scrollY.value = 0;
+  });
+});
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 
 const hotel = ref({
   name: "Bukit Vipassana Hotel",
@@ -45,31 +63,60 @@ onMounted(() => {
   hotel.value.location = result.value.location;
 });
 
-const room = {
-  name: "Superior Twin Bed",
-  imageUrl: "/img/hotel.jpeg",
-  size: "24.0 m²",
-  options: [
-    {
-      id: 1,
-      name: "Tanpa Sarapan",
-      description: "1 ranjang twin",
-      guests: 2,
-      price: 368569,
-      originalPrice: 491125,
-      breakfastIncluded: false,
-    },
-    {
-      id: 2,
-      name: "Termasuk sarapan untuk 1 orang",
-      description: "1 ranjang twin",
-      guests: 1,
-      price: 417709,
-      originalPrice: 556945,
-      breakfastIncluded: true,
-    },
-  ],
-};
+const rooms = [
+  {
+    id: 1,
+    name: "Superior Twin Bed",
+    imageUrl: "/img/hotel.jpeg",
+    size: "24.0 m²",
+    options: [
+      {
+        id: 1,
+        name: "Tanpa Sarapan",
+        description: "1 ranjang twin",
+        guests: 2,
+        price: 368569,
+        originalPrice: 491125,
+        breakfastIncluded: false,
+      },
+      {
+        id: 2,
+        name: "Termasuk sarapan untuk 1 orang",
+        description: "1 ranjang twin",
+        guests: 1,
+        price: 417709,
+        originalPrice: 556945,
+        breakfastIncluded: true,
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Deluxe Twin Bed",
+    imageUrl: "/img/hotel.jpeg",
+    size: "24.0 m²",
+    options: [
+      {
+        id: 1,
+        name: "Tanpa Sarapan",
+        description: "1 ranjang twin",
+        guests: 2,
+        price: 368569,
+        originalPrice: 491125,
+        breakfastIncluded: false,
+      },
+      {
+        id: 2,
+        name: "Termasuk sarapan untuk 1 orang",
+        description: "1 ranjang twin",
+        guests: 1,
+        price: 417709,
+        originalPrice: 556945,
+        breakfastIncluded: true,
+      },
+    ],
+  },
+];
 
 const router = useRouter();
 const onBook = (id) => {
@@ -79,13 +126,52 @@ const onBook = (id) => {
 
 <template>
   <div
-    class="sticky top-0 flex-1 py-3 bg-white shadow z-10 flex justify-center items-center">
+    class="sticky top-0 flex-1 pt-3 bg-white shadow z-10 flex justify-center items-center">
     <div class="container mx-auto max-w-7xl px-6">
       <SearchBar></SearchBar>
+      <div class="flex justify-between">
+        <Tabs value="0">
+          <TabList>
+            <Tab value="0" name="0" class="text-gray-600">
+              <router-link
+                v-slot="{ href, navigate }"
+                :to="{ name: 'hotel-details', hash: '#general-info' }">
+                <a :href="href" @click="navigate" class="text-gray-600"
+                  >Info Umum</a
+                >
+              </router-link>
+            </Tab>
+            <Tab value="1" name="1" class="text-gray-600">
+              <router-link
+                v-slot="{ href, navigate }"
+                :to="{ name: 'hotel-details', hash: '#room-details' }">
+                <a :href="href" @click="navigate" class="text-gray-600"
+                  >Kamar</a
+                >
+              </router-link>
+            </Tab>
+            <Tab name="2" class="text-gray-600">Fasilitas</Tab>
+            <Tab name="3" class="text-gray-600">Ulasan</Tab>
+          </TabList>
+        </Tabs>
+        <div
+          class="self-center transition-all"
+          :class="{
+            'opacity-0 max-w-none': scrollY < 400,
+            'opacity-100 max-w-full': scrollY > 400,
+          }">
+          <button
+            class="p-3 text-sky-700 font-bold flex items-center gap-2"
+            @click="scrollToTop">
+            <span>Kembali Ke Atas</span>
+            <i class="pi pi-chevron-up"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="container mx-auto max-w-7xl px-4 pt-6">
+  <section class="container mx-auto max-w-7xl px-4 pt-6">
     <div class="flex gap-2 rounded-t-lg overflow-hidden">
       <!-- Main Image -->
       <div class="w-1/2 m-img">
@@ -108,11 +194,12 @@ const onBook = (id) => {
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- general info hotel -->
   <div
     class="container mx-auto max-w-7xl px-4 py-4 bg-white rounded-xl shadow-[0px_0px_6px_rgba(0,0,0,0.1)]">
-    <div class="flex items-center gap-4 mb-4">
+    <div id="general-info" class="flex items-center gap-4 mb-4">
       <div class="flex-1 card space-y-1">
         <h2 class="font-bold text-2xl leading-8">{{ hotel.name }}</h2>
         <div class="flex items-center gap-2">
@@ -216,60 +303,89 @@ const onBook = (id) => {
 
   <!-- room -->
   <div class="container mx-auto max-w-7xl px-4 py-4" id="room-details">
-    <div class="flex flex-col md:flex-row">
-      <!-- Left Side: Room Information -->
-      <div class="md:w-1/4 mb-6 md:mb-0">
-        <h5 class="text-2xl font-bold mb-2">{{ room.name }}</h5>
-        <div class="w-full">
-          <img
-            :src="room.imageUrl"
-            :alt="room.name"
-            class="w-full h-48 object-cover rounded-lg mb-4" />
-        </div>
-        <p class="text-gray-600">Ukuran: {{ room.size }}</p>
+    <div class="py-4 px-2 rounded-md flex flex-col gap-1">
+      <h2 class="font-bold text-xl mb-4">
+        Tipe Kamar yang Tersedia di {{ hotel.name }}
+      </h2>
+      <div
+        class="flex gap-4 items-center bg-sky-700 text-white py-3 px-4 rounded-md mb-4">
+        <img
+          class="w-10 h-10"
+          src="https://ik.imagekit.io/tvlk/image/imageResource/2024/03/26/1711424232710-2b5d3b78b7e7a4b0c42d59b39ef0405c.png?tr=q-75"
+          alt="" />
+        <p class="text-sm">
+          Login dan gunakan kode kupon JALANYUK untuk hemat s.d. Rp1.000.000
+          pada pemesanan pertama, tanpa min. transaksi.
+        </p>
       </div>
-
-      <!-- Right Side: Room Options Table -->
-      <div class="flex-auto flex justify-center items-center p-6">
-        <table class="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="py-2 px-4 border-b text-left">Pilihan Kamar</th>
-              <th class="py-2 px-4 border-b text-center">Tamu</th>
-              <th class="py-2 px-4 border-b text-center">Harga/kamar/malam</th>
-              <th class="py-2 px-4 border-b"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="option in room.options">
-              <td class="py-2 px-4 border-b">
-                {{ option.name }}<br />
-                <small class="text-gray-500">
-                  {{ option.description }}
-                </small>
-              </td>
-              <td class="py-2 px-4 border-b text-center">
-                {{ option.guests }} orang
-              </td>
-              <td class="py-2 px-4 border-b text-center">
-                <span class="line-through text-gray-500">
-                  {{ priceFormat(option.originalPrice) }}
-                </span>
-                <br />
-                <span class="text-orange-500 font-bold">
-                  {{ priceFormat(option.price) }}
-                </span>
-              </td>
-              <td class="py-2 px-4 border-b">
-                <button
-                  class="bg-blue-500 text-white rounded-md py-1 px-2"
-                  @click="onBook(option.id)">
-                  Pilih
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div>
+        <div class="flex flex-col">
+          <template v-for="room in rooms" :key="room.id">
+            <div class="bg-white shadow-sm pb-4 px-4 mb-3 rounded-lg">
+              <div class="py-3">
+                <h3 class="text-xl font-bold">{{ room.name }}</h3>
+              </div>
+              <div class="flex flex-col lg:flex-row gap-6">
+                <div class="flex flex-col">
+                  <div class="w-80 h-56 rounded-xl overflow-hidden">
+                    <img
+                      :src="room.imageUrl"
+                      :alt="room.name"
+                      class="w-full h-full object-cover" />
+                  </div>
+                  <div class="mt-4">
+                    <p class="text-gray-600">Ukuran: {{ room.size }}</p>
+                  </div>
+                </div>
+                <div class="flex flex-auto h-fit">
+                  <table class="min-w-full bg-white border border-gray-300">
+                    <thead>
+                      <tr class="bg-gray-100">
+                        <th class="py-2 px-4 border-b text-left">
+                          Pilihan Kamar
+                        </th>
+                        <th class="py-2 px-4 border-b text-center">Tamu</th>
+                        <th class="py-2 px-4 border-b text-center">
+                          Harga/kamar/malam
+                        </th>
+                        <th class="py-2 px-4 border-b"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="option in room.options">
+                        <td class="py-2 px-4 border-b">
+                          {{ option.name }}<br />
+                          <small class="text-gray-500">
+                            {{ option.description }}
+                          </small>
+                        </td>
+                        <td class="py-2 px-4 border-b text-center">
+                          {{ option.guests }} orang
+                        </td>
+                        <td class="py-2 px-4 border-b text-center">
+                          <span class="line-through text-gray-500">
+                            {{ priceFormat(option.originalPrice) }}
+                          </span>
+                          <br />
+                          <span class="text-orange-500 font-bold">
+                            {{ priceFormat(option.price) }}
+                          </span>
+                        </td>
+                        <td class="py-2 px-4 border-b">
+                          <button
+                            class="bg-blue-500 text-white text-sm rounded-md py-1 px-3 font-bold"
+                            @click="onBook(option.id)">
+                            Pilih
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
   </div>

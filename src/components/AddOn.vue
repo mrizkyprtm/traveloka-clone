@@ -29,19 +29,15 @@ const addons = [
 </script>
 
 <template>
-  <div class="bg-white shadow-md rounded p-4">
-    <h2 class="text-xl font-bold mb-4">Add-ons ketika Menginap</h2>
+  <div class="bg-white rounded-lg p-4">
+    <h3 class="text-lg font-bold mb-4">Add-ons ketika Menginap</h3>
 
-    <div
-      v-for="addon in addons"
-      class="bg-white rounded-lg shadow-md p-4 mb-4">
+    <div v-for="addon in addons" class="bg-white rounded-lg border p-4 mb-4">
       <label class="flex items-start">
-        <input
-          type="checkbox"
-          class="mr-2" />
-        <div class="flex-1">
-          <h3 class="font-semibold">{{ addon.name }}</h3>
-          <p class="text-gray-600">{{ addon.description }}</p>
+        <input type="checkbox" class="mr-2 mt-1" />
+        <div class="flex-auto">
+          <h3 class="font-bold">{{ addon.name }}</h3>
+          <p class="text-gray-700 font-semibold">{{ addon.description }}</p>
           <p class="text-gray-500 text-sm">{{ addon.details }}</p>
         </div>
         <span class="text-orange-500 font-bold">

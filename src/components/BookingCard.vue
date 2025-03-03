@@ -18,7 +18,7 @@ const booking = {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg shadow-md p-4">
+  <div class="bg-white rounded-lg p-4">
     <!-- Hotel Name and Rating -->
     <h2 class="text-lg font-bold">{{ booking.hotelName }}</h2>
     <div class="flex items-center mb-2 text-sm gap-x-1">

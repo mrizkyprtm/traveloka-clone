@@ -73,13 +73,19 @@ const proceedToPayment = () => {
               }"
               @click="proceedToPayment" />
             <p class="text-sm text-center mt-2">
-              Dengan lanjut membayar, kamu menyetujui Syarat & Ketentuan dan
-              Kebijakan Privasi Traveloka.
+              Dengan lanjut membayar, kamu menyetujui
+              <a href="#" class="text-sky-500 hover:underline"
+                >Syarat & Ketentuan</a
+              >
+              dan
+              <a href="#" class="text-sky-500 hover:underline"
+                >Kebijakan Privasi Traveloka</a
+              >.
             </p>
           </div>
         </div>
       </div>
-      <div class="flex-1 sticky top-0 w-1/3">
+      <div class="flex-1 w-1/3">
         <HotelDetails />
       </div>
     </div>

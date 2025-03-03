@@ -12,7 +12,7 @@ const policies = [
 ];
 </script>
 <template>
-  <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+  <div class="bg-white rounded-lg p-4 mb-4">
     <h3 class="font-bold mb-4">
       <i class="pi pi-info-circle text-orange-500 mr-2"></i>
       Kebijakan Akomodasi

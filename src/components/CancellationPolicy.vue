@@ -1,10 +1,11 @@
 <script setup>
-const description = "Kamu mendapatkan kamar dengan harga terbaik dari pilihan ini!";
+const description =
+  "Kamu mendapatkan kamar dengan harga terbaik dari pilihan ini!";
 const policies = ["Pemesanan ini tidak bisa di-refund.", "Non-reschedulable"];
 </script>
 
 <template>
-  <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+  <div class="bg-white rounded-lg p-4 mb-4">
     <h3 class="font-bold mb-2">
       <i class="pi pi-info-circle text-orange-500 mr-2"></i>
       Kebijakan Pembatalan dan Reschedule
